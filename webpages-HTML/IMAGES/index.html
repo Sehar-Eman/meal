@@ -16,32 +16,22 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-body { background:#f5f5f5; font-family:Segoe UI; }
+body { background:#f4f4f4; font-family:Segoe UI; }
 
-.navbar { background:#d62828; }
-.navbar-brand { color:#fff !important; font-size:22px; font-weight:bold; }
+.navbar { background:#c1121f; }
+.navbar-brand { color:#fff !important; font-weight:bold; font-size:22px; }
 
 .hero {
-  background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+  url('https://picsum.photos/1200/600?food');
   height:60vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   color:#fff;
 }
-.hero h1 {
-  background:rgba(0,0,0,0.6);
-  padding:15px 25px;
-  border-radius:10px;
-}
 
-.card {
-  border:none;
-  border-radius:12px;
-  overflow:hidden;
-  transition:0.3s;
-}
-.card:hover { transform:scale(1.03); }
+.hero h1 { font-size:2.5rem; }
 
 .card img {
   height:220px;
@@ -50,19 +40,19 @@ body { background:#f5f5f5; font-family:Segoe UI; }
 
 .section-title {
   text-align:center;
-  margin:50px 0 25px;
+  margin:50px 0 20px;
   font-weight:bold;
 }
 
 .cart-box {
   position:fixed;
-  right:20px;
   bottom:20px;
+  right:20px;
   width:260px;
   background:#fff;
   padding:15px;
-  border-radius:12px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
 footer {
@@ -84,7 +74,7 @@ footer {
 </nav>
 
 <div class="hero">
-  <h1>Fresh & Delicious Food Delivered</h1>
+  <h1>Order Fresh & Tasty Food</h1>
 </div>
 
 <div class="container">
@@ -129,7 +119,7 @@ function createItems(items, id){
     html+=`
     <div class="col-md-4 mb-4">
       <div class="card shadow">
-        <img src="${item.img}">
+        <img src="${item.img}" onerror="this.src='https://picsum.photos/400/300?random'">
         <div class="card-body text-center">
           <h5>${item.name}</h5>
           <p>Rs ${item.price}</p>
@@ -141,45 +131,45 @@ function createItems(items, id){
   document.getElementById(id).innerHTML=html;
 }
 
-/* CORRECTED IMAGES */
+/* RELIABLE IMAGE LINKS */
 createItems([
-{name:"Biryani",price:300,img:"https://upload.wikimedia.org/wikipedia/commons/7/7c/Chicken_Biryani.jpg"},
-{name:"Karahi",price:800,img:"https://upload.wikimedia.org/wikipedia/commons/3/3b/Chicken_Karahi.jpg"},
-{name:"Nihari",price:500,img:"https://upload.wikimedia.org/wikipedia/commons/5/5b/Nihari.jpg"},
-{name:"Haleem",price:350,img:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Haleem.jpg"},
-{name:"Pulao",price:250,img:"https://upload.wikimedia.org/wikipedia/commons/0/0b/Pulao.jpg"},
-{name:"Chapli Kebab",price:400,img:"https://upload.wikimedia.org/wikipedia/commons/f/f4/Chapli_Kebab.jpg"},
-{name:"Butter Chicken",price:700,img:"https://upload.wikimedia.org/wikipedia/commons/3/3f/Butter_Chicken.jpg"}
+{name:"Biryani",price:300,img:"https://picsum.photos/400/300?biryani"},
+{name:"Karahi",price:800,img:"https://picsum.photos/400/300?curry"},
+{name:"Nihari",price:500,img:"https://picsum.photos/400/300?beef"},
+{name:"Haleem",price:350,img:"https://picsum.photos/400/300?stew"},
+{name:"Pulao",price:250,img:"https://picsum.photos/400/300?rice"},
+{name:"Chapli Kebab",price:400,img:"https://picsum.photos/400/300?kebab"},
+{name:"Butter Chicken",price:700,img:"https://picsum.photos/400/300?chicken"}
 ],"desi");
 
 createItems([
-{name:"Pizza",price:900,img:"https://upload.wikimedia.org/wikipedia/commons/d/d3/Supreme_pizza.jpg"},
-{name:"Burger",price:500,img:"https://upload.wikimedia.org/wikipedia/commons/4/4f/Hamburger_%28black_bg%29.jpg"},
-{name:"Pasta",price:600,img:"https://upload.wikimedia.org/wikipedia/commons/0/0b/RedPasta.jpg"},
-{name:"Sandwich",price:300,img:"https://upload.wikimedia.org/wikipedia/commons/c/c4/Sandwich.jpg"},
-{name:"Steak",price:1500,img:"https://upload.wikimedia.org/wikipedia/commons/3/3a/Steak.jpg"},
-{name:"Fries",price:250,img:"https://upload.wikimedia.org/wikipedia/commons/6/6f/French_Fries.jpg"},
-{name:"Hot Dog",price:350,img:"https://upload.wikimedia.org/wikipedia/commons/6/64/Hot_dog.jpg"}
+{name:"Pizza",price:900,img:"https://picsum.photos/400/300?pizza"},
+{name:"Burger",price:500,img:"https://picsum.photos/400/300?burger"},
+{name:"Pasta",price:600,img:"https://picsum.photos/400/300?pasta"},
+{name:"Sandwich",price:300,img:"https://picsum.photos/400/300?sandwich"},
+{name:"Steak",price:1500,img:"https://picsum.photos/400/300?steak"},
+{name:"Fries",price:250,img:"https://picsum.photos/400/300?fries"},
+{name:"Hot Dog",price:350,img:"https://picsum.photos/400/300?hotdog"}
 ],"western");
 
 createItems([
-{name:"Vanilla",price:200,img:"https://upload.wikimedia.org/wikipedia/commons/9/9b/Vanilla_ice_cream.jpg"},
-{name:"Chocolate",price:220,img:"https://upload.wikimedia.org/wikipedia/commons/7/70/Chocolate_ice_cream.jpg"},
-{name:"Strawberry",price:210,img:"https://upload.wikimedia.org/wikipedia/commons/2/29/Strawberry_ice_cream.jpg"},
-{name:"Mango",price:230,img:"https://upload.wikimedia.org/wikipedia/commons/f/f1/Mango_ice_cream.jpg"},
-{name:"Kulfi",price:180,img:"https://upload.wikimedia.org/wikipedia/commons/0/0e/Kulfi.jpg"},
-{name:"Oreo",price:240,img:"https://upload.wikimedia.org/wikipedia/commons/6/6b/Oreo_ice_cream.jpg"},
-{name:"Caramel",price:250,img:"https://upload.wikimedia.org/wikipedia/commons/4/4c/Caramel_ice_cream.jpg"}
+{name:"Vanilla Ice Cream",price:200,img:"https://picsum.photos/400/300?icecream"},
+{name:"Chocolate Ice Cream",price:220,img:"https://picsum.photos/400/300?chocolate"},
+{name:"Strawberry Ice Cream",price:210,img:"https://picsum.photos/400/300?strawberry"},
+{name:"Mango Ice Cream",price:230,img:"https://picsum.photos/400/300?mango"},
+{name:"Kulfi",price:180,img:"https://picsum.photos/400/300?dessert"},
+{name:"Oreo Ice Cream",price:240,img:"https://picsum.photos/400/300?oreo"},
+{name:"Caramel Ice Cream",price:250,img:"https://picsum.photos/400/300?caramel"}
 ],"icecream");
 
 createItems([
-{name:"Coke",price:120,img:"https://upload.wikimedia.org/wikipedia/commons/0/0c/Coca-Cola_Classic.jpg"},
-{name:"Pepsi",price:120,img:"https://upload.wikimedia.org/wikipedia/commons/6/6d/Pepsi_can.jpg"},
-{name:"Lassi",price:150,img:"https://upload.wikimedia.org/wikipedia/commons/0/0f/Lassi.jpg"},
-{name:"Juice",price:180,img:"https://upload.wikimedia.org/wikipedia/commons/c/cd/Orange_juice_1.jpg"},
-{name:"Milkshake",price:220,img:"https://upload.wikimedia.org/wikipedia/commons/6/69/Milkshake.jpg"},
-{name:"Coffee",price:200,img:"https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG"},
-{name:"Tea",price:100,img:"https://upload.wikimedia.org/wikipedia/commons/a/a5/Tea.jpg"}
+{name:"Coke",price:120,img:"https://picsum.photos/400/300?cola"},
+{name:"Pepsi",price:120,img:"https://picsum.photos/400/300?soda"},
+{name:"Lassi",price:150,img:"https://picsum.photos/400/300?lassi"},
+{name:"Juice",price:180,img:"https://picsum.photos/400/300?juice"},
+{name:"Milkshake",price:220,img:"https://picsum.photos/400/300?milkshake"},
+{name:"Coffee",price:200,img:"https://picsum.photos/400/300?coffee"},
+{name:"Tea",price:100,img:"https://picsum.photos/400/300?tea"}
 ],"drinks");
 
 </script>

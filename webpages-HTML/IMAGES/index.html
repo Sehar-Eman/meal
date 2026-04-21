@@ -9,125 +9,172 @@
     <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Foodie Hub - Order Food</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-body{font-family:'Segoe UI';background:#f8f9fa}
-.navbar{background:#ff5722}
-.navbar-brand{color:#fff!important;font-weight:bold}
-.hero{background:url('https://source.unsplash.com/1600x900/?food') center/cover no-repeat;height:60vh;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
-.card img{height:200px;object-fit:cover}
-.btn-order{background:#ff5722;color:#fff}
-.cart-box{position:fixed;right:0;top:0;width:300px;height:100%;background:#fff;border-left:2px solid #ddd;padding:15px;overflow-y:auto}
-footer{background:#212529;color:#fff;text-align:center;padding:15px;margin-top:20px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Diet Planner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+    }
+    .navbar {
+      background: linear-gradient(45deg, #28a745, #218838);
+    }
+    .navbar-brand, .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .footer {
+      background: #212529;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar">
-<div class="container"><span class="navbar-brand">Foodie Hub</span></div>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">Diet Planner</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#plans">Plans</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tips">Tips</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
-<section class="hero"><h1>Order Delicious Food</h1></section>
+<section class="hero" id="home">
+  <div>
+    <h1>Your Personalized Daily Diet Plan</h1>
+    <p>Eat Healthy • Stay Fit • Live Better</p>
+    <a href="#plans" class="btn btn-success btn-lg mt-3">Explore Plans</a>
+  </div>
+</section>
 
-<div class="container my-4">
-<h2>Menu</h2>
-<div class="row" id="menu"></div>
-</div>
+<section class="container py-5" id="plans">
+  <h2 class="text-center section-title">Daily Diet Plans</h2>
+  <div class="row g-4">
 
-<!-- CART -->
-<div class="cart-box">
-<h4>Cart</h4>
-<ul id="cartItems"></ul>
-<h5>Total: PKR <span id="total">0</span></h5>
-<button class="btn btn-success w-100">Checkout</button>
-</div>
+    <div class="col-md-4">
+      <div class="card shadow p-3">
+        <h5>Weight Loss Plan</h5>
+        <ul>
+          <li>Breakfast: Oats + Fruits</li>
+          <li>Lunch: Grilled Chicken + Salad</li>
+          <li>Dinner: Soup + Veggies</li>
+        </ul>
+      </div>
+    </div>
 
-<footer>© 2026 Foodie Hub</footer>
+    <div class="col-md-4">
+      <div class="card shadow p-3">
+        <h5>Muscle Gain Plan</h5>
+        <ul>
+          <li>Breakfast: Eggs + Milk</li>
+          <li>Lunch: Rice + Chicken</li>
+          <li>Dinner: Fish + Veggies</li>
+        </ul>
+      </div>
+    </div>
 
-<script>
-const foods=[
-// DESI
-{name:'Biryani',price:450,img:'https://source.unsplash.com/400x300/?biryani'},
-{name:'Karahi',price:1200,img:'https://source.unsplash.com/400x300/?karahi'},
-{name:'Nihari',price:500,img:'https://source.unsplash.com/400x300/?nihari'},
-{name:'Haleem',price:350,img:'https://source.unsplash.com/400x300/?haleem'},
-{name:'Pulao',price:400,img:'https://source.unsplash.com/400x300/?pulao'},
-{name:'Kebab',price:300,img:'https://source.unsplash.com/400x300/?kebab'},
-{name:'BBQ',price:900,img:'https://source.unsplash.com/400x300/?bbq'},
-{name:'Daal Chawal',price:250,img:'https://source.unsplash.com/400x300/?dal'},
-{name:'Saag',price:300,img:'https://source.unsplash.com/400x300/?saag'},
-{name:'Paratha',price:150,img:'https://source.unsplash.com/400x300/?paratha'},
-// WESTERN
-{name:'Burger',price:600,img:'https://source.unsplash.com/400x300/?burger'},
-{name:'Pizza',price:1500,img:'https://source.unsplash.com/400x300/?pizza'},
-{name:'Fries',price:350,img:'https://source.unsplash.com/400x300/?fries'},
-{name:'Pasta',price:800,img:'https://source.unsplash.com/400x300/?pasta'},
-{name:'Sandwich',price:400,img:'https://source.unsplash.com/400x300/?sandwich'},
-{name:'Hot Dog',price:500,img:'https://source.unsplash.com/400x300/?hotdog'},
-{name:'Steak',price:2000,img:'https://source.unsplash.com/400x300/?steak'},
-{name:'Fried Chicken',price:700,img:'https://source.unsplash.com/400x300/?fried-chicken'},
-{name:'Tacos',price:650,img:'https://source.unsplash.com/400x300/?tacos'},
-{name:'Nachos',price:550,img:'https://source.unsplash.com/400x300/?nachos'},
-// ICE CREAM
-{name:'Chocolate Ice Cream',price:250,img:'https://source.unsplash.com/400x300/?chocolate-icecream'},
-{name:'Vanilla Ice Cream',price:200,img:'https://source.unsplash.com/400x300/?vanilla-icecream'},
-{name:'Strawberry Ice Cream',price:220,img:'https://source.unsplash.com/400x300/?strawberry-icecream'},
-{name:'Mango Ice Cream',price:230,img:'https://source.unsplash.com/400x300/?mango-icecream'},
-{name:'Kulfa',price:180,img:'https://source.unsplash.com/400x300/?kulfi'},
-{name:'Cone Ice Cream',price:150,img:'https://source.unsplash.com/400x300/?icecream-cone'},
-{name:'Sundae',price:300,img:'https://source.unsplash.com/400x300/?sundae'},
-{name:'Choco Chip',price:260,img:'https://source.unsplash.com/400x300/?chocolate-chip-icecream'},
-{name:'Oreo Ice Cream',price:280,img:'https://source.unsplash.com/400x300/?oreo-icecream'},
-{name:'Caramel Ice Cream',price:270,img:'https://source.unsplash.com/400x300/?caramel-icecream'},
-// DRINKS
-{name:'Coke',price:120,img:'https://source.unsplash.com/400x300/?coke'},
-{name:'Pepsi',price:120,img:'https://source.unsplash.com/400x300/?pepsi'},
-{name:'Juice',price:200,img:'https://source.unsplash.com/400x300/?juice'},
-{name:'Milkshake',price:300,img:'https://source.unsplash.com/400x300/?milkshake'},
-{name:'Coffee',price:250,img:'https://source.unsplash.com/400x300/?coffee'},
-{name:'Tea',price:150,img:'https://source.unsplash.com/400x300/?tea'},
-{name:'Smoothie',price:280,img:'https://source.unsplash.com/400x300/?smoothie'},
-{name:'Lassi',price:180,img:'https://source.unsplash.com/400x300/?lassi'},
-{name:'Mocktail',price:350,img:'https://source.unsplash.com/400x300/?mocktail'},
-{name:'Energy Drink',price:300,img:'https://source.unsplash.com/400x300/?energy-drink'}
-];
+    <div class="col-md-4">
+      <div class="card shadow p-3">
+        <h5>Balanced Diet Plan</h5>
+        <ul>
+          <li>Breakfast: Smoothie + Nuts</li>
+          <li>Lunch: Roti + Sabzi</li>
+          <li>Dinner: Light Salad</li>
+        </ul>
+      </div>
+    </div>
 
-let cart=[];
+  </div>
+</section>
 
-function display(){
-let menu=document.getElementById('menu');
-foods.forEach((f,i)=>{
-menu.innerHTML+=`<div class='col-md-4 mb-3'>
-<div class='card'>
-<img src='${f.img}'>
-<div class='card-body'>
-<h5>${f.name}</h5>
-<p>PKR ${f.price}</p>
-<button class='btn btn-order' onclick='addToCart(${i})'>Add to Cart</button>
-</div></div></div>`;
-});
-}
+<section class="bg-light py-5" id="tips">
+  <div class="container">
+    <h2 class="text-center section-title">Health Tips</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card p-3 shadow">
+          <h6>Stay Hydrated</h6>
+          <p>Drink at least 8 glasses of water daily.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 shadow">
+          <h6>Eat Fresh</h6>
+          <p>Include fruits and vegetables in your meals.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3 shadow">
+          <h6>Exercise Daily</h6>
+          <p>At least 30 minutes of physical activity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-function addToCart(i){
-cart.push(foods[i]);
-updateCart();
-}
+<section class="container py-5" id="contact">
+  <h2 class="text-center section-title">Contact Us</h2>
+  <form class="row g-3">
+    <div class="col-md-6">
+      <input type="text" class="form-control" placeholder="Your Name" required>
+    </div>
+    <div class="col-md-6">
+      <input type="email" class="form-control" placeholder="Email" required>
+    </div>
+    <div class="col-12">
+      <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+    </div>
+    <div class="col-12 text-center">
+      <button class="btn btn-success">Send Message</button>
+    </div>
+  </form>
+</section>
 
-function updateCart(){
-let list=document.getElementById('cartItems');
-let total=0;
-list.innerHTML='';
-cart.forEach(item=>{
-list.innerHTML+=`<li>${item.name} - PKR ${item.price}</li>`;
-total+=item.price;
-});
-document.getElementById('total').innerText=total;
-}
+<footer class="footer">
+  <p>© 2026 Daily Diet Planner | Designed Professionally</p>
+</footer>
 
-display();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

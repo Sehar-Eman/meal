@@ -16,22 +16,25 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-body { background:#f4f4f4; font-family:Segoe UI; }
+body { background:#f8f9fa; font-family:Segoe UI; }
 
-.navbar { background:#c1121f; }
-.navbar-brand { color:#fff !important; font-weight:bold; font-size:22px; }
+.navbar { background:#d62828; }
+.navbar-brand { color:#fff !important; font-weight:bold; }
 
 .hero {
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-  url('https://picsum.photos/1200/600?food');
+  background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover;
   height:60vh;
   display:flex;
-  justify-content:center;
   align-items:center;
-  color:#fff;
+  justify-content:center;
+  color:white;
 }
 
-.hero h1 { font-size:2.5rem; }
+.hero h1 {
+  background:rgba(0,0,0,0.6);
+  padding:15px 25px;
+  border-radius:10px;
+}
 
 .card img {
   height:220px;
@@ -40,14 +43,14 @@ body { background:#f4f4f4; font-family:Segoe UI; }
 
 .section-title {
   text-align:center;
-  margin:50px 0 20px;
+  margin:40px 0 20px;
   font-weight:bold;
 }
 
 .cart-box {
   position:fixed;
-  bottom:20px;
   right:20px;
+  bottom:20px;
   width:260px;
   background:#fff;
   padding:15px;
@@ -74,7 +77,7 @@ footer {
 </nav>
 
 <div class="hero">
-  <h1>Order Fresh & Tasty Food</h1>
+  <h1>Delicious Food, Delivered Fast</h1>
 </div>
 
 <div class="container">
@@ -119,7 +122,7 @@ function createItems(items, id){
     html+=`
     <div class="col-md-4 mb-4">
       <div class="card shadow">
-        <img src="${item.img}" onerror="this.src='https://picsum.photos/400/300?random'">
+        <img src="${item.img}">
         <div class="card-body text-center">
           <h5>${item.name}</h5>
           <p>Rs ${item.price}</p>
@@ -131,47 +134,41 @@ function createItems(items, id){
   document.getElementById(id).innerHTML=html;
 }
 
-/* RELIABLE IMAGE LINKS */
+/* ✅ CORRECT MATCHED IMAGES */
+
 createItems([
-{name:"Biryani",price:300,img:"https://picsum.photos/400/300?biryani"},
-{name:"Karahi",price:800,img:"https://picsum.photos/400/300?curry"},
-{name:"Nihari",price:500,img:"https://picsum.photos/400/300?beef"},
-{name:"Haleem",price:350,img:"https://picsum.photos/400/300?stew"},
-{name:"Pulao",price:250,img:"https://picsum.photos/400/300?rice"},
-{name:"Chapli Kebab",price:400,img:"https://picsum.photos/400/300?kebab"},
-{name:"Butter Chicken",price:700,img:"https://picsum.photos/400/300?chicken"}
+{name:"Biryani",price:300,img:"https://images.unsplash.com/photo-1589302168068-964664d93dc0"},
+{name:"Karahi",price:800,img:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398"},
+{name:"Nihari",price:500,img:"https://images.unsplash.com/photo-1601050690597-df0568f70950"},
+{name:"Haleem",price:350,img:"https://images.unsplash.com/photo-1625944233249-7c7e0b86e9c4"},
+{name:"Chapli Kebab",price:400,img:"https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"}
 ],"desi");
 
 createItems([
-{name:"Pizza",price:900,img:"https://picsum.photos/400/300?pizza"},
-{name:"Burger",price:500,img:"https://picsum.photos/400/300?burger"},
-{name:"Pasta",price:600,img:"https://picsum.photos/400/300?pasta"},
-{name:"Sandwich",price:300,img:"https://picsum.photos/400/300?sandwich"},
-{name:"Steak",price:1500,img:"https://picsum.photos/400/300?steak"},
-{name:"Fries",price:250,img:"https://picsum.photos/400/300?fries"},
-{name:"Hot Dog",price:350,img:"https://picsum.photos/400/300?hotdog"}
+{name:"Pizza",price:900,img:"https://images.unsplash.com/photo-1548365328-5b849b1c7d59"},
+{name:"Burger",price:500,img:"https://images.unsplash.com/photo-1550547660-d9450f859349"},
+{name:"Pasta",price:600,img:"https://images.unsplash.com/photo-1521389508051-d7ffb5dc8c2e"},
+{name:"Fries",price:250,img:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"},
+{name:"Hot Dog",price:350,img:"https://images.unsplash.com/photo-1550547660-8d1c9c4f4b6d"}
 ],"western");
 
 createItems([
-{name:"Vanilla Ice Cream",price:200,img:"https://picsum.photos/400/300?icecream"},
-{name:"Chocolate Ice Cream",price:220,img:"https://picsum.photos/400/300?chocolate"},
-{name:"Strawberry Ice Cream",price:210,img:"https://picsum.photos/400/300?strawberry"},
-{name:"Mango Ice Cream",price:230,img:"https://picsum.photos/400/300?mango"},
-{name:"Kulfi",price:180,img:"https://picsum.photos/400/300?dessert"},
-{name:"Oreo Ice Cream",price:240,img:"https://picsum.photos/400/300?oreo"},
-{name:"Caramel Ice Cream",price:250,img:"https://picsum.photos/400/300?caramel"}
+{name:"Vanilla Ice Cream",price:200,img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb"},
+{name:"Chocolate Ice Cream",price:220,img:"https://images.unsplash.com/photo-1570197788417-0e82375c9371"},
+{name:"Strawberry Ice Cream",price:210,img:"https://images.unsplash.com/photo-1497032628192-86f99bcd76bc"},
+{name:"Mango Ice Cream",price:230,img:"https://images.unsplash.com/photo-1627308595229-7830a5c91f9f"},
+{name:"Kulfi",price:180,img:"https://images.unsplash.com/photo-1600891963935-c3f6c1f4fbd6"}
 ],"icecream");
 
 createItems([
-{name:"Coke",price:120,img:"https://picsum.photos/400/300?cola"},
-{name:"Pepsi",price:120,img:"https://picsum.photos/400/300?soda"},
-{name:"Lassi",price:150,img:"https://picsum.photos/400/300?lassi"},
-{name:"Juice",price:180,img:"https://picsum.photos/400/300?juice"},
-{name:"Milkshake",price:220,img:"https://picsum.photos/400/300?milkshake"},
-{name:"Coffee",price:200,img:"https://picsum.photos/400/300?coffee"},
-{name:"Tea",price:100,img:"https://picsum.photos/400/300?tea"}
+{name:"Coke",price:120,img:"https://images.unsplash.com/photo-1580910051074-3eb694886505"},
+{name:"Pepsi",price:120,img:"https://images.unsplash.com/photo-1622483767028-3f66f2b3d7d3"},
+{name:"Lassi",price:150,img:"https://images.unsplash.com/photo-1625944233249-7c7e0b86e9c4"},
+{name:"Juice",price:180,img:"https://images.unsplash.com/photo-1572441710534-680a05b9cdd7"},
+{name:"Coffee",price:200,img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93"}
 ],"drinks");
 
 </script>
+
 </body>
 </html>

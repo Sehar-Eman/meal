@@ -9,144 +9,125 @@
     <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foodie Hub - Order Delicious Food</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; background:#f8f9fa; }
-    .navbar { background:#ff5722; }
-    .navbar-brand, .nav-link { color:#fff !important; font-weight:bold; }
-    .hero { background:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover no-repeat; height:90vh; display:flex; align-items:center; justify-content:center; color:#fff; text-align:center; }
-    .hero h1 { font-size:3.5rem; }
-    .card img { height:200px; object-fit:cover; }
-    .btn-order { background:#ff5722; color:#fff; }
-    footer { background:#212529; color:#fff; text-align:center; padding:20px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foodie Hub - Order Food</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body{font-family:'Segoe UI';background:#f8f9fa}
+.navbar{background:#ff5722}
+.navbar-brand{color:#fff!important;font-weight:bold}
+.hero{background:url('https://source.unsplash.com/1600x900/?food') center/cover no-repeat;height:60vh;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
+.card img{height:200px;object-fit:cover}
+.btn-order{background:#ff5722;color:#fff}
+.cart-box{position:fixed;right:0;top:0;width:300px;height:100%;background:#fff;border-left:2px solid #ddd;padding:15px;overflow-y:auto}
+footer{background:#212529;color:#fff;text-align:center;padding:15px;margin-top:20px}
+</style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="#">Foodie Hub</a>
-  </div>
+<nav class="navbar">
+<div class="container"><span class="navbar-brand">Foodie Hub</span></div>
 </nav>
 
-<section class="hero">
-  <div>
-    <h1>Order Your Favorite Food</h1>
-    <p>Fast Delivery | Fresh Taste</p>
-  </div>
-</section>
+<section class="hero"><h1>Order Delicious Food</h1></section>
 
-<div class="container my-5">
+<div class="container my-4">
+<h2>Menu</h2>
+<div class="row" id="menu"></div>
+</div>
 
-<!-- DESI -->
-<h2 class="mb-4">Desi Foods</h2>
-<div class="row g-4">
+<!-- CART -->
+<div class="cart-box">
+<h4>Cart</h4>
+<ul id="cartItems"></ul>
+<h5>Total: PKR <span id="total">0</span></h5>
+<button class="btn btn-success w-100">Checkout</button>
+</div>
 
-<!-- 10 items -->
+<footer>© 2026 Foodie Hub</footer>
+
 <script>
-const desi = [
-['Biryani',450,'photo-1604908176997-125f25cc6f3d'],
-['Karahi',1200,'photo-1601050690597-df0568f70950'],
-['Nihari',500,'photo-1613145993510-83b3d4f0d1f0'],
-['Haleem',350,'photo-1625944230993-dc7f5d2c3c6b'],
-['Pulao',400,'photo-1603133872878-684f208fb84b'],
-['Chapli Kebab',300,'photo-1598515213692-5f252f75d785'],
-['BBQ',900,'photo-1544025162-d76694265947'],
-['Daal Chawal',250,'photo-1627308595181-4c0a63d6d7b5'],
-['Saag',300,'photo-1604909052743-94e838986d24'],
-['Paratha',150,'photo-1625944525904-62c5b0e4d3c2']
+const foods=[
+// DESI
+{name:'Biryani',price:450,img:'https://source.unsplash.com/400x300/?biryani'},
+{name:'Karahi',price:1200,img:'https://source.unsplash.com/400x300/?karahi'},
+{name:'Nihari',price:500,img:'https://source.unsplash.com/400x300/?nihari'},
+{name:'Haleem',price:350,img:'https://source.unsplash.com/400x300/?haleem'},
+{name:'Pulao',price:400,img:'https://source.unsplash.com/400x300/?pulao'},
+{name:'Kebab',price:300,img:'https://source.unsplash.com/400x300/?kebab'},
+{name:'BBQ',price:900,img:'https://source.unsplash.com/400x300/?bbq'},
+{name:'Daal Chawal',price:250,img:'https://source.unsplash.com/400x300/?dal'},
+{name:'Saag',price:300,img:'https://source.unsplash.com/400x300/?saag'},
+{name:'Paratha',price:150,img:'https://source.unsplash.com/400x300/?paratha'},
+// WESTERN
+{name:'Burger',price:600,img:'https://source.unsplash.com/400x300/?burger'},
+{name:'Pizza',price:1500,img:'https://source.unsplash.com/400x300/?pizza'},
+{name:'Fries',price:350,img:'https://source.unsplash.com/400x300/?fries'},
+{name:'Pasta',price:800,img:'https://source.unsplash.com/400x300/?pasta'},
+{name:'Sandwich',price:400,img:'https://source.unsplash.com/400x300/?sandwich'},
+{name:'Hot Dog',price:500,img:'https://source.unsplash.com/400x300/?hotdog'},
+{name:'Steak',price:2000,img:'https://source.unsplash.com/400x300/?steak'},
+{name:'Fried Chicken',price:700,img:'https://source.unsplash.com/400x300/?fried-chicken'},
+{name:'Tacos',price:650,img:'https://source.unsplash.com/400x300/?tacos'},
+{name:'Nachos',price:550,img:'https://source.unsplash.com/400x300/?nachos'},
+// ICE CREAM
+{name:'Chocolate Ice Cream',price:250,img:'https://source.unsplash.com/400x300/?chocolate-icecream'},
+{name:'Vanilla Ice Cream',price:200,img:'https://source.unsplash.com/400x300/?vanilla-icecream'},
+{name:'Strawberry Ice Cream',price:220,img:'https://source.unsplash.com/400x300/?strawberry-icecream'},
+{name:'Mango Ice Cream',price:230,img:'https://source.unsplash.com/400x300/?mango-icecream'},
+{name:'Kulfa',price:180,img:'https://source.unsplash.com/400x300/?kulfi'},
+{name:'Cone Ice Cream',price:150,img:'https://source.unsplash.com/400x300/?icecream-cone'},
+{name:'Sundae',price:300,img:'https://source.unsplash.com/400x300/?sundae'},
+{name:'Choco Chip',price:260,img:'https://source.unsplash.com/400x300/?chocolate-chip-icecream'},
+{name:'Oreo Ice Cream',price:280,img:'https://source.unsplash.com/400x300/?oreo-icecream'},
+{name:'Caramel Ice Cream',price:270,img:'https://source.unsplash.com/400x300/?caramel-icecream'},
+// DRINKS
+{name:'Coke',price:120,img:'https://source.unsplash.com/400x300/?coke'},
+{name:'Pepsi',price:120,img:'https://source.unsplash.com/400x300/?pepsi'},
+{name:'Juice',price:200,img:'https://source.unsplash.com/400x300/?juice'},
+{name:'Milkshake',price:300,img:'https://source.unsplash.com/400x300/?milkshake'},
+{name:'Coffee',price:250,img:'https://source.unsplash.com/400x300/?coffee'},
+{name:'Tea',price:150,img:'https://source.unsplash.com/400x300/?tea'},
+{name:'Smoothie',price:280,img:'https://source.unsplash.com/400x300/?smoothie'},
+{name:'Lassi',price:180,img:'https://source.unsplash.com/400x300/?lassi'},
+{name:'Mocktail',price:350,img:'https://source.unsplash.com/400x300/?mocktail'},
+{name:'Energy Drink',price:300,img:'https://source.unsplash.com/400x300/?energy-drink'}
 ];
-desi.forEach(f=>document.write(`
-<div class='col-md-4'><div class='card'>
-<img src='https://images.unsplash.com/${f[2]}'>
-<div class='card-body'><h5>${f[0]}</h5><p>PKR ${f[1]}</p><button class='btn btn-order'>Add to Cart</button></div>
-</div></div>`));
+
+let cart=[];
+
+function display(){
+let menu=document.getElementById('menu');
+foods.forEach((f,i)=>{
+menu.innerHTML+=`<div class='col-md-4 mb-3'>
+<div class='card'>
+<img src='${f.img}'>
+<div class='card-body'>
+<h5>${f.name}</h5>
+<p>PKR ${f.price}</p>
+<button class='btn btn-order' onclick='addToCart(${i})'>Add to Cart</button>
+</div></div></div>`;
+});
+}
+
+function addToCart(i){
+cart.push(foods[i]);
+updateCart();
+}
+
+function updateCart(){
+let list=document.getElementById('cartItems');
+let total=0;
+list.innerHTML='';
+cart.forEach(item=>{
+list.innerHTML+=`<li>${item.name} - PKR ${item.price}</li>`;
+total+=item.price;
+});
+document.getElementById('total').innerText=total;
+}
+
+display();
 </script>
-
-</div>
-
-<!-- WESTERN -->
-<h2 class="my-5">Western Foods</h2>
-<div class="row g-4">
-<script>
-const western = [
-['Burger',600,'photo-1550547660-d9450f859349'],
-['Pizza',1500,'photo-1548365328-5b84906c7c43'],
-['Fries',350,'photo-1550317138-10000687a72b'],
-['Pasta',800,'photo-1525755662778-989d0524087e'],
-['Sandwich',400,'photo-1550547660-4f5d5f0e8b1b'],
-['Hot Dog',500,'photo-1550547660-6f1d2c7d2c2a'],
-['Steak',2000,'photo-1551183053-bf91a1d81141'],
-['Fried Chicken',700,'photo-1562967916-eb82221dfb92'],
-['Tacos',650,'photo-1552332386-f8dd00dc2f85'],
-['Nachos',550,'photo-1513104890138-7c749659a591']
-];
-western.forEach(f=>document.write(`
-<div class='col-md-4'><div class='card'>
-<img src='https://images.unsplash.com/${f[2]}'>
-<div class='card-body'><h5>${f[0]}</h5><p>PKR ${f[1]}</p><button class='btn btn-order'>Add to Cart</button></div>
-</div></div>`));
-</script>
-</div>
-
-<!-- ICE CREAM -->
-<h2 class="my-5">Ice Cream</h2>
-<div class="row g-4">
-<script>
-const ice = [
-['Chocolate',250,'photo-1505253758473-96b7015fcd40'],
-['Vanilla',200,'photo-1563805042-7684c019e1cb'],
-['Strawberry',220,'photo-1570197788417-0e82375c9371'],
-['Mango',230,'photo-1625944230993-dc7f5d2c3c6b'],
-['Kulfa',180,'photo-1590080877777-5a6e64a6b740'],
-['Cone',150,'photo-1464306076886-da185f6a6e0b'],
-['Sundae',300,'photo-1497032628192-86f99bcd76bc'],
-['Choco Chip',260,'photo-1511918984145-48de785d4c2f'],
-['Oreo',280,'photo-1527515637462-daf6a0c1a4a4'],
-['Caramel',270,'photo-1551024709-8f23befc6d3c']
-];
-ice.forEach(f=>document.write(`
-<div class='col-md-4'><div class='card'>
-<img src='https://images.unsplash.com/${f[2]}'>
-<div class='card-body'><h5>${f[0]} Ice Cream</h5><p>PKR ${f[1]}</p><button class='btn btn-order'>Add to Cart</button></div>
-</div></div>`));
-</script>
-</div>
-
-<!-- DRINKS -->
-<h2 class="my-5">Drinks</h2>
-<div class="row g-4">
-<script>
-const drinks = [
-['Coke',120,'photo-1551024709-8f23befc6d3c'],
-['Pepsi',120,'photo-1581006852262-e4307cf6283a'],
-['Juice',200,'photo-1577805947697-89e18249d767'],
-['Milkshake',300,'photo-1572490122747-3968b75cc699'],
-['Coffee',250,'photo-1509042239860-f550ce710b93'],
-['Tea',150,'photo-1511920170033-f8396924c348'],
-['Smoothie',280,'photo-1497534446932-c925b458314e'],
-['Lassi',180,'photo-1604908176997-125f25cc6f3d'],
-['Mocktail',350,'photo-1532635241-17e820acc59f'],
-['Energy Drink',300,'photo-1582719478250-c89cae4dc85b']
-];
-drinks.forEach(f=>document.write(`
-<div class='col-md-4'><div class='card'>
-<img src='https://images.unsplash.com/${f[2]}'>
-<div class='card-body'><h5>${f[0]}</h5><p>PKR ${f[1]}</p><button class='btn btn-order'>Add to Cart</button></div>
-</div></div>`));
-</script>
-</div>
-
-</div>
-
-<footer>
-  <p>© 2026 Foodie Hub</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
